@@ -1,0 +1,35 @@
+.paraTableColMid {
+	width: 25%;
+}
+
+.paraTableColLarge {
+	width: 55%;
+}
+
+.paraTableColSmall {
+	width: 15%;
+}
+
+.singleTableTopicCol {
+	width: 10%;
+}
+.singleTableQuesCol {
+	width: 25%;
+}
+.singleTableOptionCol {
+	width: 10%;
+}
+.singleTableAnsCol {
+	width: 9%;
+}
+.singleTableSelectCol {
+	width: 5%;
+}
+
+pre {
+    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap; /* Opera */
+    white-space: -o-pre-wrap; /* Opera */
+    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word; /* IE 5.5+ */
+}

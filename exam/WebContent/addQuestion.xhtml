@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/WEB-INF/Templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<div id="wrapper">
+			<div id="container-fluid">
+				<br />
+				<div class="page-header">
+					<h:messages globalOnly="true" infoClass="sucess" errorClass="error"></h:messages>
+					<h3>
+						<h:graphicImage library="images" name="upload.png" width="30"
+							height="30" />
+						Upload Question
+					</h3>
+				</div>
+				<h:form class="form-horizontal well" id="addQuestionFormId" enctype="multipart/form-data">
+					<div style="display: inline;" class="control-group" id="questionTypeDivId">
+						<div class="form-actions">
+							<span class="btn btn-primary btn-sm" id="singleBtnId">Single
+								Question</span> &nbsp; <span class="btn btn-primary btn-sm" id="paraBtnId">Paragraph Question</span>
+								&nbsp; <span class="btn btn-primary btn-sm" id="imageBtnId">Pictorial Question</span>
+						</div>
+						<div class="controls">
+							<label class="control-label" for="select01">Select Topic
+								*</label>
+
+							<h:selectOneMenu id="topic"
+								value="#{addQuesBean.questionVO.topic}" class="form-control">
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItem itemLabel="Quantitative apptitude"
+									itemValue="Quantitative apptitude" />
+								<f:selectItem itemLabel="English" itemValue="English" />
+								<f:selectItem itemLabel="Reasoning" itemValue="Reasoning" />
+								<f:selectItem itemLabel="General knowledge"
+									itemValue="General knowledge" />
+								<f:selectItem itemLabel="General awareness"
+									itemValue="General awareness" />
+								<f:selectItem itemLabel="Public affairs"
+									itemValue="Public affairs" />
+								<f:selectItem itemLabel="Polity" itemValue="Polity" />
+								<f:selectItem itemLabel="Geography" itemValue="Geography" />
+								<f:selectItem itemLabel="History" itemValue="History" />
+								<f:selectItem itemLabel="Economics" itemValue="Economics" />
+								<f:selectItem itemLabel="General science"
+									itemValue="General science" />
+								<f:selectItem itemLabel="Technical" itemValue="Technical" />
+								<f:selectItem itemLabel="Computer" itemValue="Computer" />
+
+								<!-- <f:selectItem itemLabel="General Knowledge"
+									itemValue="General Knowledge" /> -->
+							</h:selectOneMenu>
+						</div>
+					</div>
+					
+					<!-- SINGLE QUESTION IMPL START -->
+					<div style="display: inline;" id="singleQuesDivId">
+						<div class="control-group">
+							<label class="control-label" for="textarea">Question *</label>
+							<div class="controls">
+								<h:inputTextarea class="form-control" id="textarea" rows="3"
+									value="#{addQuesBean.questionVO.question}"></h:inputTextarea>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="input01">Option 1 *</label>
+							<div class="controls">
+								<h:inputText id="input01" class="form-control input-xlarge"
+									type="text" value="#{addQuesBean.questionVO.option1}">
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="input01">Option 2 *</label>
+							<div class="controls">
+								<h:inputText id="input02" class="form-control input-xlarge"
+									type="text" value="#{addQuesBean.questionVO.option2}">
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="input01">Option 3 *</label>
+							<div class="controls">
+								<h:inputText id="input03" class="form-control input-xlarge"
+									type="text" value="#{addQuesBean.questionVO.option3}">
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="input01">Option 4 *</label>
+							<div class="controls">
+								<h:inputText id="input04" class="form-control input-xlarge"
+									type="text" value="#{addQuesBean.questionVO.option4}">
+								</h:inputText>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="input01">Option 5 *</label>
+							<div class="controls">
+								<h:inputText id="input05" class="form-control input-xlarge"
+									type="text" value="#{addQuesBean.questionVO.option5}">
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="select02">Select Answer
+								*</label>
+							<div class="controls">
+								<h:selectOneMenu id="answer"
+									value="#{addQuesBean.questionVO.answer}" class="form-control">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+									<f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+									<f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+									<f:selectItem itemLabel="Option 4" itemValue="Option 4" />
+									<f:selectItem itemLabel="Option 5" itemValue="Option 5" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<br></br>
+						<div class="form-actions">
+							<h:commandButton value="Save Changes"
+								action="#{addQuesBean.createQuestion}"
+								class="btn btn-lg btn-success"></h:commandButton>
+							&nbsp;
+							<h:commandButton value="cancel"
+								action="#{addQuesBean.clearQuestionVO}"
+								class="btn btn-lg btn-danger"></h:commandButton>
+						</div>
+					</div>
+					<!-- SINGLE QUESTION IMPL END -->
+					
+					<!-- PARA QUESTION IMPL START -->
+					<div id="paraDivId" style="display: none;">
+						<div class="control-group">
+							<label class="control-label" for="quesTitleId">Question Title <b>(This title will be shown at Create Question paper Page)</b> *</label>
+							<div class="controls">
+								<h:inputTextarea class="form-control" id="quesTitleId" rows="3"
+									value="#{addQuesBean.quesParaTitle}"></h:inputTextarea>
+							</div>
+							<br/>
+							<label class="control-label" for="quesParaId">Paragraph *</label>
+							<div class="controls">
+								<h:inputTextarea class="form-control" id="quesParaId" rows="7"
+									value="#{addQuesBean.quesParagraph}"></h:inputTextarea>
+							</div>
+							<br /> <span class="btn btn-primary btn-sm" id="paraProceedBtnId">Proceed</span>
+						</div>
+					</div>
+					
+					<div style="display: none;" id="paraQuestionDivId">
+						<div class="control-group">
+							<label class="control-label" for="paraQuesId">Question *</label>
+							<div class="controls">
+								<h:inputTextarea class="form-control" id="paraQuesId" rows="3"></h:inputTextarea>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="paraOption1Id">Option 1 *</label>
+							<div class="controls">
+								<h:inputText id="paraOption1Id" class="form-control input-xlarge"
+									type="text">
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="paraOption2Id">Option 2 *</label>
+							<div class="controls">
+								<h:inputText id="paraOption2Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="paraOption3Id">Option 3 *</label>
+							<div class="controls">
+								<h:inputText id="paraOption3Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="paraOption4Id">Option 4 *</label>
+							<div class="controls">
+								<h:inputText id="paraOption4Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="paraOption5Id">Option 5 *</label>
+							<div class="controls">
+								<h:inputText id="paraOption5Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="paraAnsId">Select Answer
+								*</label>
+							<div class="controls">
+								<h:selectOneMenu id="paraAnsId"
+									class="form-control">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+									<f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+									<f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+									<f:selectItem itemLabel="Option 4" itemValue="Option 4" />
+									<f:selectItem itemLabel="Option 5" itemValue="Option 5" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<br></br>
+						<div class="form-actions">
+						<a class="btn btn-primary btn-sm" href="#" role="button" id="paraAddMoreQuesBtnId">Add More Question</a>
+							&nbsp;
+							<h:commandButton id="paraSaveQuesBtnId" value="Save Questions"
+								action="#{addQuesBean.createQuestion}"
+								class="btn btn-primary btn-sm"></h:commandButton>
+						</div>
+					</div>
+					<!-- PARA QUESTION IMPL END -->
+					
+					<!-- IMAGE QUESTION IMPL START -->
+					<div id="imgDivId" style="display: none;">
+						<div class="control-group">
+							<label class="control-label" for="imgQuesTitleId">Pictorial Question Title <b>(This title will be shown at Create Question paper Page)</b> *</label>
+							<div class="controls">
+								<h:inputTextarea class="form-control" id="imgQuesTitleId" rows="3"
+									value="#{addQuesBean.quesImgTitle}"></h:inputTextarea>
+							</div>
+							<br/>
+							<label class="control-label" for="quesImgId">Upload Image/Diagram *</label>
+							<div class="controls">
+								<!-- <h:inputTextarea class="form-control" id="quesImgId" rows="7"
+									value="#{addQuesBean.quesParagraph}"></h:inputTextarea> -->
+								<!-- <input type="file" name="imgQues" id="imgQues" size="50" value=""/> -->
+								<t:inputFileUpload id="file" value="#{addQuesBean.uploadImage}"
+									required="false" storage="file" accept="image/*"
+									immediate="true" />
+							</div>
+							<br /> <span class="btn btn-primary btn-sm" id="imgProceedBtnId">Proceed</span>
+						</div>
+					</div>
+					
+					<div style="display: none;" id="imgQuestionDivId">
+						<div class="control-group">
+							<label class="control-label" for="imgQuesId">Question *</label>
+							<div class="controls">
+								<h:inputTextarea class="form-control" id="imgQuesId" rows="3"></h:inputTextarea>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="imgOption1Id">Option 1 *</label>
+							<div class="controls">
+								<h:inputText id="imgOption1Id" class="form-control input-xlarge"
+									type="text">
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="imgOption2Id">Option 2 *</label>
+							<div class="controls">
+								<h:inputText id="imgOption2Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="imgOption3Id">Option 3 *</label>
+							<div class="controls">
+								<h:inputText id="imgOption3Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="imgOption4Id">Option 4 *</label>
+							<div class="controls">
+								<h:inputText id="imgOption4Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="imgOption5Id">Option 5 *</label>
+							<div class="controls">
+								<h:inputText id="imgOption5Id" class="form-control input-xlarge"
+									type="text" >
+								</h:inputText>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="imgAnsId">Select Answer
+								*</label>
+							<div class="controls">
+								<h:selectOneMenu id="imgAnsId"
+									class="form-control">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+									<f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+									<f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+									<f:selectItem itemLabel="Option 4" itemValue="Option 4" />
+									<f:selectItem itemLabel="Option 5" itemValue="Option 5" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<br></br>
+						<div class="form-actions">
+						<a class="btn btn-primary btn-sm" href="#" role="button" id="imgAddMoreQuesBtnId">Add More Question</a>
+							&nbsp;
+							<h:commandButton id="imgSaveQuesBtnId" value="Save Questions"
+								action="#{addQuesBean.createQuestion}"
+								class="btn btn-primary btn-sm"></h:commandButton>
+						</div>
+					</div>
+					<!-- IMAGE QUESTION IMPL END -->
+					
+					<h:inputHidden id="quesCatHidden" value="#{addQuesBean.questionCategory}"></h:inputHidden>
+					
+					<!-- PARA QUESTION HDN VAL START -->
+					<h:inputHidden id="paraQuesStrHidden" value="#{addQuesBean.paraQuestionsStr}"></h:inputHidden>
+					<h:inputHidden id="paraOption1StrHidden" value="#{addQuesBean.paraOption1Str}"></h:inputHidden>
+					<h:inputHidden id="paraOption2StrHidden" value="#{addQuesBean.paraOption2Str}"></h:inputHidden>
+					<h:inputHidden id="paraOption3StrHidden" value="#{addQuesBean.paraOption3Str}"></h:inputHidden>
+					<h:inputHidden id="paraOption4StrHidden" value="#{addQuesBean.paraOption4Str}"></h:inputHidden>
+					<h:inputHidden id="paraOption5StrHidden" value="#{addQuesBean.paraOption5Str}"></h:inputHidden>
+					<h:inputHidden id="paraAnsStrHidden" value="#{addQuesBean.paraAnsStr}"></h:inputHidden>
+					<!-- PARA QUESTION HDN VAL END -->
+					
+					<!-- IMAGE QUESTION HDN VAL START -->
+					<h:inputHidden id="imgQuesStrHidden" value="#{addQuesBean.imgQuestionsStr}"></h:inputHidden>
+					<h:inputHidden id="imgOption1StrHidden" value="#{addQuesBean.imgOption1Str}"></h:inputHidden>
+					<h:inputHidden id="imgOption2StrHidden" value="#{addQuesBean.imgOption2Str}"></h:inputHidden>
+					<h:inputHidden id="imgOption3StrHidden" value="#{addQuesBean.imgOption3Str}"></h:inputHidden>
+					<h:inputHidden id="imgOption4StrHidden" value="#{addQuesBean.imgOption4Str}"></h:inputHidden>
+					<h:inputHidden id="imgOption5StrHidden" value="#{addQuesBean.imgOption5Str}"></h:inputHidden>
+					<h:inputHidden id="imgAnsStrHidden" value="#{addQuesBean.imgAnsStr}"></h:inputHidden>
+					<!-- IMAGE QUESTION HDN VAL END -->
+
+				</h:form>
+			</div>
+		</div>
+		<div class="copy-right">
+			<center>
+				<p>
+					Copyright 2015. Powered by <a href="http://comettech.co">CometTech Pvt. Ltd.</a>
+				</p>
+			</center>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>
